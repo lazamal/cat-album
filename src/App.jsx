@@ -5,7 +5,7 @@ import "./App.css";
 import { MyHeader } from "./components/MyHeader";
 import { TodoItem } from "./components/TodoItem";
 
-// this is myy comment
+// this is my comment
 
 function App() {
   const [todoText, setTodoText] = useState("");
