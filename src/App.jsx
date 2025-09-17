@@ -18,8 +18,8 @@ function App() {
 
   return (
     <>
-      <div>
-        <h1>Todo App</h1>
+      <div className="bg-blue-500 ">
+        <h1 className="pb-5 hover:bg-blue-950">Todo App</h1>
         {todos.map((item) => {
           return (
             <TodoItem
@@ -34,6 +34,7 @@ function App() {
         <div>מה המשימה?</div>
         <div>
           <input
+            className="bg-blue-950"
             value={todoText}
             onChange={(event) => {
               setTodoText(event.target.value);
