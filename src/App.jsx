@@ -1,17 +1,18 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
 import CatImage from "./components/catImage";
 
 function App() {
   const [showImage, setShowImage] = useState(null);
+  const [catArray, setCatArray] = useState([]);
 
   return (
     <>
       <h1 className="pb-5">האלבום של שוש החתולה</h1>
       <div>
-        <CatImage src={showImage} />
+        {catArray.map((pic, index) => (
+          <CatImage key={index} src={pic} />
+        ))}
         <br></br>
         <br></br>
         <label
@@ -24,13 +25,14 @@ function App() {
             id="uploadedPhoto"
             name="filename"
             className="hidden"
+            multiple
             onChange={(event) => {
               const files = Array.from(event.target.files);
-              const url = URL.createObjectURL(files[0]);
-              setShowImage(url);
+              const urls = files.map((file) => URL.createObjectURL(file));
+              setCatArray([...catArray, ...urls]);
+
               event.target.value = null;
             }}
-            multiple
           />
           הוסף תמונה!
         </label>
