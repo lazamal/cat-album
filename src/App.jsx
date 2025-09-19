@@ -7,18 +7,11 @@ import CatImage from "./components/catImage";
 function App() {
   const [showImage, setShowImage] = useState(null);
 
-  const handlePics = function (event) {
-    const files = Array.from(event.target.files);
-    const url = URL.createObjectURL(files[0]);
-    setShowImage(url);
-    event.target.value = null;
-  };
-
   return (
     <>
       <h1 className="pb-5">האלבום של שוש החתולה</h1>
       <div>
-        <CatImage src={showImage} key={Math.random} />
+        <CatImage src={showImage} />
         <br></br>
         <br></br>
         <label
@@ -31,7 +24,12 @@ function App() {
             id="uploadedPhoto"
             name="filename"
             className="hidden"
-            onChange={handlePics}
+            onChange={(event) => {
+              const files = Array.from(event.target.files);
+              const url = URL.createObjectURL(files[0]);
+              setShowImage(url);
+              event.target.value = null;
+            }}
             multiple
           />
           הוסף תמונה!

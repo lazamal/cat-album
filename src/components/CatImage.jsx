@@ -1,5 +1,3 @@
-export default function CatImage({ src, key }) {
-  return (
-    <img src={src} key={key} className="mt-4 max-w-xs rounded shadow"></img>
-  );
+export default function CatImage({ src }) {
+  return <img src={src} className="mt-4 max-w-xs rounded shadow"></img>;
 }
