@@ -3,12 +3,11 @@ import "./App.css";
 import CatImage from "./components/catImage";
 
 function App() {
-  const [showImage, setShowImage] = useState(null);
   const [catArray, setCatArray] = useState([]);
 
   return (
     <>
-      <h1 className="pb-5">האלבום של שוש החתולה</h1>
+      <h1 className="pb-5">האלבום של שוש</h1>
       <div>
         {catArray.map((pic, index) => (
           <CatImage key={index} src={pic} />
@@ -30,7 +29,6 @@ function App() {
               const files = Array.from(event.target.files);
               const urls = files.map((file) => URL.createObjectURL(file));
               setCatArray([...catArray, ...urls]);
-
               event.target.value = null;
             }}
           />
