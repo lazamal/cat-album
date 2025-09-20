@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import CatImage from "./components/catImage";
+import { CatConcept } from "./components/CatConcept";
 
 function App() {
   const [catArray, setCatArray] = useState([]);
@@ -8,6 +9,12 @@ function App() {
   return (
     <>
       <h1 className="pb-5">האלבום של שוש</h1>
+      <section id="cat-concepts">
+        <h2>cat concepts</h2>
+        <ul>
+          <CatConcept {...CAT_CONCEPTS[0]} />
+        </ul>
+      </section>
       <div>
         {catArray.map((pic, index) => (
           <CatImage key={index} src={pic} />
