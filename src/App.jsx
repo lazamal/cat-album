@@ -1,66 +1,60 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
-import { MyHeader } from "./components/MyHeader";
-import { TodoItem } from "./components/TodoItem";
-
-// this is my comment
+import CatImage from "./components/catImage";
 
 function App() {
-  const [todoText, setTodoText] = useState("");
-
-  const [todos, setTodos] = useState([
-    {
-      text: "לעשות כלים",
-      id: Math.random(),
-      isDone: true,
-    },
-  ]);
+  const [showImage, setShowImage] = useState(null);
+  const [catArray, setCatArray] = useState([]);
 
   return (
     <>
-      <div className="bg-blue-500 ">
-        <h1 className="pb-5 hover:bg-blue-950">Todo App</h1>
-        {todos.map((item) => {
-          return (
-            <TodoItem
-              key={item.id}
-              item={item}
-              todos={todos}
-              setTodos={setTodos}
-            />
-          );
-        })}
-
-        <div>מה המשימה?</div>
-        <div>
+      <h1 className="pb-5">האלבום של שוש החתולה</h1>
+      <div>
+        {catArray.map((pic, index) => (
+          <CatImage key={index} src={pic} />
+        ))}
+        <br></br>
+        <br></br>
+        <label
+          id="uploadedPhoto"
+          className="cursor-pointer px-4 py-2 bg-amber-800 text-white rounded"
+        >
           <input
-            className="bg-blue-950"
-            value={todoText}
+            type="file"
+            accept="image/png, image/jpeg"
+            id="uploadedPhoto"
+            name="filename"
+            className="hidden"
+            multiple
             onChange={(event) => {
-              setTodoText(event.target.value);
+              const files = Array.from(event.target.files);
+              const urls = files.map((file) => URL.createObjectURL(file));
+              setCatArray([...catArray, ...urls]);
+
+              event.target.value = null;
             }}
           />
-        </div>
-
-        <button
-          onClick={() => {
-            const newTodo = {
-              text: todoText,
-              id: Math.random(),
-              isDone: false,
-            };
-
-            setTodos([...todos, newTodo]);
-            setTodoText("");
-          }}
-        >
-          הוסף משימה
-        </button>
+          הוסף תמונה!
+        </label>
       </div>
     </>
   );
 }
 
 export default App;
+
+// example on to make a button do something in react
+// <button
+//   onClick={() => {
+//     const newTodo = {
+//       text: todoText,
+//       id: Math.random(),
+//       isDone: false,
+//     };
+
+//     setTodos([...todos, newTodo]);
+//     setTodoText("");
+//   }}
+// >
+//   הוסף תמונה
+// </button>
