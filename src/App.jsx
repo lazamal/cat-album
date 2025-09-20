@@ -2,17 +2,28 @@ import { useState } from "react";
 import "./App.css";
 import CatImage from "./components/catImage";
 import { CatConcept } from "./components/CatConcept";
+import { CAT_DATA } from "./cat_data";
+import { TabButton } from "./components/TabButton";
 
 function App() {
   const [catArray, setCatArray] = useState([]);
 
   return (
     <>
-      <h1 className="pb-5">האלבום של שוש</h1>
+      <h1 className="pb-5 text-fuchsia-700">האלבום של שוש</h1>
       <section id="cat-concepts">
-        <h2>cat concepts</h2>
+        <h2 className="text-4xl text-fuchsia-600 mb-2">cat concepts</h2>
+
+        <menu className="flex flex-row">
+          <TabButton>{CAT_DATA[0]["title"]}</TabButton>
+          <TabButton>{CAT_DATA[1]["title"]}</TabButton>
+          <TabButton>{CAT_DATA[2]["title"]}</TabButton>
+        </menu>
+
         <ul>
-          <CatConcept {...CAT_CONCEPTS[0]} />
+          <CatConcept {...CAT_DATA[0]} />
+          <CatConcept {...CAT_DATA[1]} />
+          <CatConcept {...CAT_DATA[2]} />
         </ul>
       </section>
       <div>
