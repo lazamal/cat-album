@@ -8,23 +8,37 @@ import { TabButton } from "./components/TabButton";
 function App() {
   const [catArray, setCatArray] = useState([]);
 
+  const titles = CAT_DATA.map((item) => item.title);
+
+  const [catConceptData, setCatConceptData] = useState(null);
+
+  function handleClick(catData) {
+    setCatConceptData(catData);
+  }
+
   return (
     <>
       <h1 className="pb-5 text-fuchsia-700">האלבום של שוש</h1>
-      <section id="cat-concepts">
+      <section id="cat-concepts" className="flex flex-col gap-10">
         <h2 className="text-4xl text-fuchsia-600 mb-2">cat concepts</h2>
 
-        <menu className="flex flex-row">
-          <TabButton>{CAT_DATA[0]["title"]}</TabButton>
-          <TabButton>{CAT_DATA[1]["title"]}</TabButton>
-          <TabButton>{CAT_DATA[2]["title"]}</TabButton>
+        <menu className="flex justify-center gap-8">
+          <TabButton handleClick={() => handleClick(CAT_DATA[0])}>
+            {titles[0]}
+          </TabButton>
+          <TabButton handleClick={() => handleClick(CAT_DATA[1])}>
+            {titles[1]}
+          </TabButton>
+          <TabButton handleClick={() => handleClick(CAT_DATA[2])}>
+            {titles[2]}
+          </TabButton>
         </menu>
-
-        <ul>
-          <CatConcept {...CAT_DATA[0]} />
-          <CatConcept {...CAT_DATA[1]} />
-          <CatConcept {...CAT_DATA[2]} />
-        </ul>
+        <div>
+          {!catConceptData ? (
+            <p className="text-2xl">Select a topic to learn about my cat</p>
+          ) : null}
+          {catConceptData ? <CatConcept {...catConceptData} /> : null}
+        </div>
       </section>
       <div>
         {catArray.map((pic, index) => (
