@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-      <h1 className="pb-5 text-fuchsia-700">האלבום של שוש</h1>
+      <h1 className="pb-5 text-7xl text-fuchsia-700 ">האלבום של שוש</h1>
       <section id="cat-concepts" className="flex flex-col gap-10">
         <h2 className="text-4xl text-fuchsia-600 mb-2">cat concepts</h2>
         <Tabs
