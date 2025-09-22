@@ -4,6 +4,7 @@ import CatImage from "./components/catImage";
 import { CatConcept } from "./components/CatConcept";
 import { CAT_DATA } from "./cat_data";
 import { TabButton } from "./components/TabButton";
+import Tabs from "./components/Tabs";
 
 function App() {
   const [catArray, setCatArray] = useState([]);
@@ -21,29 +22,31 @@ function App() {
       <h1 className="pb-5 text-fuchsia-700">האלבום של שוש</h1>
       <section id="cat-concepts" className="flex flex-col gap-10">
         <h2 className="text-4xl text-fuchsia-600 mb-2">cat concepts</h2>
-
-        <menu className="flex justify-center gap-8">
-          <TabButton handleClick={() => handleClick(CAT_DATA[0])}>
-            {titles[0]}
-          </TabButton>
-          <TabButton handleClick={() => handleClick(CAT_DATA[1])}>
-            {titles[1]}
-          </TabButton>
-          <TabButton handleClick={() => handleClick(CAT_DATA[2])}>
-            {titles[2]}
-          </TabButton>
-        </menu>
+        <Tabs
+          buttonsContainer="menu"
+          buttons={
+            <>
+              <TabButton handleClick={() => handleClick(CAT_DATA[0])}>
+                {titles[0]}
+              </TabButton>
+              <TabButton handleClick={() => handleClick(CAT_DATA[1])}>
+                {titles[1]}
+              </TabButton>
+              <TabButton handleClick={() => handleClick(CAT_DATA[2])}>
+                {titles[2]}
+              </TabButton>
+            </>
+          }
+        />
         <div>
           {!catConceptData ? (
             <p className="text-2xl">Select a topic to learn about my cat</p>
-          ) : null}
-          {catConceptData ? <CatConcept {...catConceptData} /> : null}
+          ) : (
+            <CatConcept {...catConceptData} />
+          )}
         </div>
       </section>
       <div>
-        {catArray.map((pic, index) => (
-          <CatImage key={index} src={pic} />
-        ))}
         <br></br>
         <br></br>
         <label
@@ -66,6 +69,11 @@ function App() {
           />
           הוסף תמונה!
         </label>
+        <div className="grid grid-cols-3 gap-4">
+          {catArray.map((pic, index) => (
+            <CatImage key={index} src={pic} />
+          ))}
+        </div>
       </div>
     </>
   );
