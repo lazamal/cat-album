@@ -6,7 +6,7 @@ import { CAT_DATA } from "../cat_data";
 import { TabButton } from "../components/TabButton";
 import Tabs from "../components/Tabs";
 
-function HomePage() {
+export default function HomePage() {
   const [catArray, setCatArray] = useState([]);
 
   const titles = CAT_DATA.map((item) => item.title);
@@ -78,5 +78,3 @@ function HomePage() {
     </>
   );
 }
-
-export default HomePage;
